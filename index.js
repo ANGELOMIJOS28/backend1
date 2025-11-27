@@ -7,12 +7,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// ===== RAILWAY MYSQL CONNECTION =====
+// ===== RAILWAY MYSQL PUBLIC CONNECTION =====
 const db = mysql.createConnection({
-  host: "shinkansen.proxy.rlwy.net",
+  host: "turntable.proxy.rlwy.net",
   user: "root",
-  password: "gsPCpwSsuhbbrrmubThRQxXjHSHmAVLz",
-  port: 39375,
+  password: "kpwhqROQZZWgDnTPfIqnVtVAoJHEuuka",
+  port: 49815,
   database: "railway"
 });
 
@@ -65,6 +65,7 @@ app.post("/todos", (req, res) => {
     [title, task, status],
     (err, result) => {
       if (err) return res.status(500).json({ error: err.message });
+      console.log("Inserted todo ID:", result.insertId);
       res.json({ id: result.insertId, title, task, status });
     }
   );
@@ -97,4 +98,5 @@ app.delete("/todos/:id", (req, res) => {
 // ===== START SERVER =====
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
