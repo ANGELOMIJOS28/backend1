@@ -11,7 +11,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
+  password: process.env.DB_PASS,   // FIXED ✔
   database: process.env.DB_NAME,
   port: Number(process.env.DB_PORT),
 });
@@ -23,6 +23,7 @@ db.connect(err => {
     console.log("Connected to Railway MySQL database!");
   }
 });
+
 
 // ===== CRUD ROUTES =====
 
